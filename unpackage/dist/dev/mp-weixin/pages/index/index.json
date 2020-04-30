@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "首页",
+  "usingComponents": {
+    "u-button": "/uview/components/u-button/u-button",
+    "u-modal": "/uview/components/u-modal/u-modal",
+    "user-info-btn": "/components/userInfoBtn/userInfoBtn"
+  }
+}

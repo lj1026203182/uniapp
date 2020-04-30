@@ -1,0 +1,41 @@
+image {display: inline-block;height: auto;will-change: transform;}
+input,button,scroll-view,view,swiper,movable-area,movable-view,cover-view,textarea,swiper-item,text {box-sizing: border-box;flex-direction: row;}
+::-webkit-scrollbar{display: none}
+
+/* start--hover-class-start */
+.hover-class {background-color: #f7f8f9!important;}
+/* end--hover-class--end */
+
+/* start--文本行数限制--start */
+.diandiandian  { overflow: hidden ; white-space: nowrap ; text-overflow: ellipsis;}
+.diandiandian2, .diandiandian3 {  overflow: hidden;  text-overflow: ellipsis;  display: -webkit-box;   -webkit-box-orient: vertical; }
+.diandiandian2 {-webkit-line-clamp: 2;}
+.diandiandian3 {-webkit-line-clamp: 3;}
+/* end--文本行数限制--end */
+
+/* start--Retina 屏幕下的 1px 边框--start */
+.solid,
+.solid-bottom,
+.solid-left,
+.solid-right,
+.solid-top,
+.solid-top-bottom {position: relative}
+
+.solid-bottom:after,
+.solid-left:after,
+.solid-right:after,
+.solid-top-bottom:after,
+.solid-top:after,
+.solid:after {	content: " ";	position: absolute;	pointer-events: none;	box-sizing: border-box; 	-webkit-transform-origin: center;	transform-origin: center;	top: -50%;	left: -50%;	right: -50%;	bottom: -50%;	-webkit-transform: scale(.5);	transform: scale(.5);	border: 0 solid #e4e7ed;	z-index: 0;}
+
+.solid-top:after {border-top-width: 1px}
+.solid-left:after {border-left-width: 1px}
+.solid-right:after {border-right-width: 1px}
+.solid-bottom:after {border-bottom-width: 1px}
+.solid-top-bottom:after {border-width: 1px 0}
+.solid:after {border-width: 1px}
+/* end--Retina 屏幕下的 1px 边框--end */
+
+/* button */
+button::after {border: none;}
+button{transition: all 0.15s;	display: flex;align-items: center;justify-content: center;background-color: #fff;padding: 0;}

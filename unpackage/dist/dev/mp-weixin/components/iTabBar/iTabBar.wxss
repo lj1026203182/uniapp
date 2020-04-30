@@ -1,0 +1,118 @@
+@charset "UTF-8";
+/* 颜色变量 */
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* Border Radius */
+/* 透明度 */
+.tabBar {
+  width: 100%;
+  height: calc(98rpx + env(safe-area-inset-bottom) / 2);
+  background: #fff;
+  border-top: 1px solid #E5E5E5;
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+  padding-bottom: calc(env(safe-area-inset-bottom) / 2);
+}
+.tabBar .tabBar_list {
+  width: 86%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+}
+.tabBar .tabBar_list image {
+  width: 48rpx;
+  height: 48rpx;
+  margin-bottom: 2rpx;
+}
+.tabBar .tabBar_list .tabBar_item {
+  width: 68rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+          flex-direction: column;
+  font-size: 20rpx;
+  color: #969BA3;
+}
+.tabBar .tabBar_list .tabBar_item2 {
+  width: 68rpx;
+  height: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+          flex-direction: column;
+  font-size: 20rpx;
+  color: #969BA3;
+  margin-top: -20rpx;
+  position: relative;
+  z-index: 101;
+}
+.tabBar .tabBar_list .tabBar_item2 image {
+  width: 68rpx;
+  height: 68rpx;
+}
+.border_box {
+  width: 100%;
+  height: 98rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  position: fixed;
+  left: 0px;
+  bottom: calc(50rpx + env(safe-area-inset-bottom) / 2);
+  z-index: 100;
+  pointer-events: none;
+}
+.border_box .tabBar_miden_border {
+  width: 100rpx;
+  height: 50rpx;
+  border-top: 2rpx solid #E5E5E5;
+  border-radius: 50rpx 50rpx 0 0;
+  /* 左上、右上、右下、左下 */
+  background: #fff;
+}
+.nav_active {
+  color: #007AFF;
+}
+

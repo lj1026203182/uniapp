@@ -1,0 +1,40 @@
+{
+	"pages": [{
+		"path": "pages/index/index",
+		"style": {
+			"navigationBarTitleText": "首页"
+		}
+	}, {
+		"path": "pages/center/center",
+		"style": {}
+	}],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	},
+	"tabBar": {
+		"color": "#C8CBDE",
+		"selectedColor": "#333",
+		"borderStyle": "white",
+		"backgroundColor": "#fff",
+		"custom": true,
+		"list": [{
+				"pagePath": "pages/index/index",
+				"iconPath": "/static/tabBar/1.png",
+				"selectedIconPath": "/static/tabBar/11.png",
+				"text": "首页"
+			},
+			{
+				"pagePath": "pages/center/center",
+				"iconPath": "/static/tabBar/2.png",
+				"selectedIconPath": "/static/tabBar/22.png",
+				"text": "个人中心"
+			}
+		]
+	},
+	"easycom": {
+		"^u-(.*)": "@/uview/components/u-$1/u-$1.vue"
+	}
+}

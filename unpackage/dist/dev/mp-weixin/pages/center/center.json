@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "i-tab-bar": "/components/iTabBar/iTabBar"
+  }
+}
