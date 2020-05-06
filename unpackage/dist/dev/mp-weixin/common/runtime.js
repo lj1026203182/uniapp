@@ -104,11 +104,11 @@
 /******/
 /******/
 /******/ 		// mini-css-extract-plugin CSS loading
-/******/ 		var cssChunks = {"components/iTabBar/iTabBar":1,"components/userInfoBtn/userInfoBtn":1,"uview/components/u-button/u-button":1,"uview/components/u-modal/u-modal":1,"uview/components/u-popup/u-popup":1,"uview/components/u-mask/u-mask":1};
+/******/ 		var cssChunks = {"components/iTabBar/iTabBar":1,"components/userInfoBtn/userInfoBtn":1};
 /******/ 		if(installedCssChunks[chunkId]) promises.push(installedCssChunks[chunkId]);
 /******/ 		else if(installedCssChunks[chunkId] !== 0 && cssChunks[chunkId]) {
 /******/ 			promises.push(installedCssChunks[chunkId] = new Promise(function(resolve, reject) {
-/******/ 				var href = "" + ({"components/iTabBar/iTabBar":"components/iTabBar/iTabBar","components/userInfoBtn/userInfoBtn":"components/userInfoBtn/userInfoBtn","uview/components/u-button/u-button":"uview/components/u-button/u-button","uview/components/u-modal/u-modal":"uview/components/u-modal/u-modal","uview/components/u-popup/u-popup":"uview/components/u-popup/u-popup","uview/components/u-mask/u-mask":"uview/components/u-mask/u-mask"}[chunkId]||chunkId) + ".wxss";
+/******/ 				var href = "" + ({"components/iTabBar/iTabBar":"components/iTabBar/iTabBar","components/userInfoBtn/userInfoBtn":"components/userInfoBtn/userInfoBtn","uview/components/u-button/u-button":"uview/components/u-button/u-button","uview/components/u-modal/u-modal":"uview/components/u-modal/u-modal"}[chunkId]||chunkId) + ".wxss";
 /******/ 				var fullhref = __webpack_require__.p + href;
 /******/ 				var existingLinkTags = document.getElementsByTagName("link");
 /******/ 				for(var i = 0; i < existingLinkTags.length; i++) {

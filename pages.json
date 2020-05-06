@@ -8,6 +8,12 @@
 		"path": "pages/center/center",
 		"style": {}
 	}],
+	"subpackages": [{
+		"root": "subpages/page1",
+		"pages": [
+			"page1/page1"
+		]
+	}],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",

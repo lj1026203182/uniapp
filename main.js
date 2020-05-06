@@ -3,7 +3,7 @@ import App from './App'
 import store from './store'
 import filter from 'filter/filter.js'
 import iTabBar from 'components/iTabBar/iTabBar.vue'
-import uView from "@/uview";
+import uView from "@/uview-ui";
 
 Vue.use(uView).use(filter);
 

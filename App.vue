@@ -17,6 +17,6 @@
 </script>
 
 <style lang="scss">
-	@import "/uview/index.scss";
-	@import "/assets/css/common.wxss";
+	@import "@/uview-ui/index.scss";
+	@import "@/common/css/common.wxss";
 </style>

@@ -2,8 +2,8 @@
 export const ToastThenLoading = () => {
 	let isShowLoading = false;
 	let isShowToast = false;
-	const { showLoading, hideLoading, showToast, hideToast } = uni;
-	Object.defineProperty(uni, 'showLoading', {
+	const { showLoading, hideLoading, showToast, hideToast } = wx;
+	Object.defineProperty(wx, 'showLoading', {
 		configurable: true, // 是否可以配置
 		enumerable: true, // 是否可迭代
 		writable: true, // 是否可重写
@@ -15,7 +15,7 @@ export const ToastThenLoading = () => {
 			return showLoading.apply(this, param); // 原样移交函数参数和this
 		}
 	});
-	Object.defineProperty(uni, 'hideLoading', {
+	Object.defineProperty(wx, 'hideLoading', {
 		configurable: true, // 是否可以配置
 		enumerable: true, // 是否可迭代
 		writable: true, // 是否可重写
@@ -27,19 +27,19 @@ export const ToastThenLoading = () => {
 			return hideLoading.apply(this, param); // 原样移交函数参数和this
 		}
 	});
-	Object.defineProperty(uni, 'showToast', {
+	Object.defineProperty(wx, 'showToast', {
 		configurable: true, // 是否可以配置
 		enumerable: true, // 是否可迭代
 		writable: true, // 是否可重写
 		value(...param) {
 			if (isShowLoading) { // Toast优先级更高
-				uni.hideLoading();
+				wx.hideLoading();
 			}
 			isShowToast = true;
 			return showToast.apply(this, param); // 原样移交函数参数和this
 		}
 	});
-	Object.defineProperty(uni, 'hideToast', {
+	Object.defineProperty(wx, 'hideToast', {
 		configurable: true, // 是否可以配置
 		enumerable: true, // 是否可迭代
 		writable: true, // 是否可重写

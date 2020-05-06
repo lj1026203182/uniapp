@@ -1,5 +1,6 @@
 
 Page {
 	background-color: #f7f7f7;
+	padding-bottom: 200rpx;
 }
 

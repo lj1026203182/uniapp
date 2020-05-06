@@ -757,7 +757,7 @@ function initData(vueOptions, context) {
     try {
       data = data.call(context); // 支持 Vue.prototype 上挂的数据
     } catch (e) {
-      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data);
       }
     }
@@ -7091,7 +7091,7 @@ function type(obj) {
 
 function flushCallbacks$1(vm) {
     if (vm.__next_tick_callbacks && vm.__next_tick_callbacks.length) {
-        if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:flushCallbacks[' + vm.__next_tick_callbacks.length + ']');
@@ -7112,14 +7112,14 @@ function nextTick$1(vm, cb) {
     //1.nextTick 之前 已 setData 且 setData 还未回调完成
     //2.nextTick 之前存在 render watcher
     if (!vm.__next_tick_pending && !hasRenderWatcher(vm)) {
-        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:nextVueTick');
         }
         return nextTick(cb, vm)
     }else{
-        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance$1 = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance$1.is || mpInstance$1.route) + '][' + vm._uid +
                 ']:nextMPTick');
@@ -7195,7 +7195,7 @@ var patch = function(oldVnode, vnode) {
     });
     var diffData = this.$shouldDiffData === false ? data : diff(data, mpData);
     if (Object.keys(diffData).length) {
-      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + this._uid +
           ']差量更新',
           JSON.stringify(diffData));
@@ -8532,7 +8532,7 @@ module.exports = {"_from":"@dcloudio/uni-stat@next","_id":"@dcloudio/uni-stat@2.
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": { "navigationBarTitleText": "首页" }, "pages/center/center": {} }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "uni-app", "navigationBarBackgroundColor": "#F8F8F8", "backgroundColor": "#F8F8F8" } };exports.default = _default;
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": { "navigationBarTitleText": "首页", "usingComponents": { "user-info-btn": "/components/userInfoBtn/userInfoBtn" }, "usingAutoImportComponents": { "u-button": "/uview/components/u-button/u-button", "u-modal": "/uview/components/u-modal/u-modal", "i-tab-bar": "/components/iTabBar/iTabBar" } }, "pages/center/center": { "usingComponents": {}, "usingAutoImportComponents": { "i-tab-bar": "/components/iTabBar/iTabBar" } }, "subpages/page1/page1/page1": { "usingComponents": {}, "usingAutoImportComponents": {} }, "subpages/page2/page2/page2": { "usingComponents": {}, "usingAutoImportComponents": {} }, "subpages/page3/page3/page3": { "usingComponents": {}, "usingAutoImportComponents": {} }, "subpages/page4/page4/page4": { "usingComponents": {}, "usingAutoImportComponents": {} }, "subpages/page5/page5/page5": { "usingComponents": {}, "usingAutoImportComponents": {} } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "uni-app", "navigationBarBackgroundColor": "#F8F8F8", "backgroundColor": "#F8F8F8" } };exports.default = _default;
 
 /***/ }),
 /* 8 */
@@ -8557,12 +8557,12 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.debounce = debounce;exports.throttle = throttle;exports.timeFormat = timeFormat;exports.ToastThenLoading = void 0; //  优化微信toast以及loading
+Object.defineProperty(exports, "__esModule", { value: true });exports.debounce = debounce;exports.throttle = throttle;exports.timeFormat = timeFormat;exports.ToastThenLoading = void 0; //  优化微信toast以及loading
 var ToastThenLoading = function ToastThenLoading() {
   var isShowLoading = false;
-  var isShowToast = false;var _uni =
-  uni,showLoading = _uni.showLoading,hideLoading = _uni.hideLoading,showToast = _uni.showToast,hideToast = _uni.hideToast;
-  Object.defineProperty(uni, 'showLoading', {
+  var isShowToast = false;var _wx =
+  wx,showLoading = _wx.showLoading,hideLoading = _wx.hideLoading,showToast = _wx.showToast,hideToast = _wx.hideToast;
+  Object.defineProperty(wx, 'showLoading', {
     configurable: true, // 是否可以配置
     enumerable: true, // 是否可迭代
     writable: true, // 是否可重写
@@ -8574,7 +8574,7 @@ var ToastThenLoading = function ToastThenLoading() {
       return showLoading.apply(this, param); // 原样移交函数参数和this
     } });
 
-  Object.defineProperty(uni, 'hideLoading', {
+  Object.defineProperty(wx, 'hideLoading', {
     configurable: true, // 是否可以配置
     enumerable: true, // 是否可迭代
     writable: true, // 是否可重写
@@ -8586,19 +8586,19 @@ var ToastThenLoading = function ToastThenLoading() {
       return hideLoading.apply(this, param); // 原样移交函数参数和this
     } });
 
-  Object.defineProperty(uni, 'showToast', {
+  Object.defineProperty(wx, 'showToast', {
     configurable: true, // 是否可以配置
     enumerable: true, // 是否可迭代
     writable: true, // 是否可重写
     value: function value() {
       if (isShowLoading) {// Toast优先级更高
-        uni.hideLoading();
+        wx.hideLoading();
       }
       isShowToast = true;for (var _len3 = arguments.length, param = new Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {param[_key3] = arguments[_key3];}
       return showToast.apply(this, param); // 原样移交函数参数和this
     } });
 
-  Object.defineProperty(uni, 'hideToast', {
+  Object.defineProperty(wx, 'hideToast', {
     configurable: true, // 是否可以配置
     enumerable: true, // 是否可迭代
     writable: true, // 是否可重写
@@ -8689,7 +8689,6 @@ function timeFormat() {var timestamp = arguments.length > 0 && arguments[0] !== 
   };
   return fmt;
 }
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 /* 13 */,
@@ -9843,9 +9842,9 @@ install;exports.default = _default;
 
 /***/ }),
 /* 20 */
-/*!*************************************!*\
-  !*** D:/HTML/uniapp/uview/index.js ***!
-  \*************************************/
+/*!****************************************!*\
+  !*** D:/HTML/uniapp/uview-ui/index.js ***!
+  \****************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9876,58 +9875,32 @@ var _request = _interopRequireDefault(__webpack_require__(/*! ./libs/request */ 
 
 
 
-var _queryParams = __webpack_require__(/*! ./libs/function/queryParams.js */ 27);
+var _queryParams = _interopRequireDefault(__webpack_require__(/*! ./libs/function/queryParams.js */ 27));
 
+var _route = _interopRequireDefault(__webpack_require__(/*! ./libs/function/route.js */ 28));
 
+var _timeFormat = _interopRequireDefault(__webpack_require__(/*! ./libs/function/timeFormat.js */ 29));
 
-var _route = __webpack_require__(/*! ./libs/function/route.js */ 28);
+var _timeFrom = _interopRequireDefault(__webpack_require__(/*! ./libs/function/timeFrom.js */ 30));
 
+var _colorGradient = _interopRequireDefault(__webpack_require__(/*! ./libs/function/colorGradient.js */ 31));
 
+var _guid = _interopRequireDefault(__webpack_require__(/*! ./libs/function/guid.js */ 32));
 
-var _timeFormat = __webpack_require__(/*! ./libs/function/timeFormat.js */ 29);
+var _color = _interopRequireDefault(__webpack_require__(/*! ./libs/function/color.js */ 33));
 
+var _type2icon = _interopRequireDefault(__webpack_require__(/*! ./libs/function/type2icon.js */ 34));
 
-
-var _timeFrom = __webpack_require__(/*! ./libs/function/timeFrom.js */ 30);
-
-
-
-var _colorGradient = __webpack_require__(/*! ./libs/function/colorGradient.js */ 31);
-
-
-
-
-
-var _guid = __webpack_require__(/*! ./libs/function/guid.js */ 32);
-
-
-
-var _color = __webpack_require__(/*! ./libs/function/color.js */ 33);
-
-
-
-var _type2icon = __webpack_require__(/*! ./libs/function/type2icon.js */ 34);
-
-
-
-var _randomArray = __webpack_require__(/*! ./libs/function/randomArray.js */ 35);
-
-
+var _randomArray = _interopRequireDefault(__webpack_require__(/*! ./libs/function/randomArray.js */ 35));
 
 
 var _test = _interopRequireDefault(__webpack_require__(/*! ./libs/function/test.js */ 36));
 
-var _random = __webpack_require__(/*! ./libs/function/random.js */ 37);
+var _random = _interopRequireDefault(__webpack_require__(/*! ./libs/function/random.js */ 37));
 
+var _trim = _interopRequireDefault(__webpack_require__(/*! ./libs/function/trim.js */ 38));
 
-
-var _trim = __webpack_require__(/*! ./libs/function/trim.js */ 38);
-
-
-
-var _toast = __webpack_require__(/*! ./libs/function/toast.js */ 39);
-
-
+var _toast = _interopRequireDefault(__webpack_require__(/*! ./libs/function/toast.js */ 39));
 
 
 var _config = _interopRequireDefault(__webpack_require__(/*! ./libs/config/config.js */ 40));
@@ -9947,17 +9920,17 @@ function wranning(str) {// 开发环境进行信息输出,主要是一些报错�
 // 	//TODO handle the exception
 // }
 // post类型对象参数转为get类型url参数
-var $u = { queryParams: _queryParams.queryParams, route: _route.route, timeFormat: _timeFormat.timeFormat, date: _timeFormat.timeFormat, // 另名date
-  timeFrom: _timeFrom.timeFrom, colorGradient: _colorGradient.colorGradient, guid: _guid.guid, color: _color.color, type2icon: _type2icon.type2icon, randomArray: _randomArray.randomArray, wranning: wranning, get: _request.default.get, post: _request.default.post, put: _request.default.put,
+var $u = { queryParams: _queryParams.default, route: _route.default, timeFormat: _timeFormat.default, date: _timeFormat.default, // 另名date
+  timeFrom: _timeFrom.default, colorGradient: _colorGradient.default.colorGradient, guid: _guid.default, color: _color.default, type2icon: _type2icon.default, randomArray: _randomArray.default, wranning: wranning, get: _request.default.get, post: _request.default.post, put: _request.default.put,
   'delete': _request.default.delete,
-  hexToRgb: _colorGradient.hexToRgb,
-  rgbToHex: _colorGradient.rgbToHex,
+  hexToRgb: _colorGradient.default.hexToRgb,
+  rgbToHex: _colorGradient.default.rgbToHex,
   test: _test.default,
-  random: _random.random,
-  trim: _trim.trim,
+  random: _random.default,
+  trim: _trim.default,
   type: ['primary', 'success', 'error', 'warning', 'info'],
   http: _request.default,
-  toast: _toast.toast,
+  toast: _toast.default,
   config: _config.default, // uView配置信息相关，比如版本号
   zIndex: _zIndex.default };
 
@@ -9970,14 +9943,14 @@ var install = function install(Vue) {
   // Vue.mixin(vuexStore);
   // 时间格式化，同时两个名称，date和timeFormat
   Vue.filter('timeFormat', function (timestamp, format) {
-    return (0, _timeFormat.timeFormat)(timestamp, format);
+    return (0, _timeFormat.default)(timestamp, format);
   });
   Vue.filter('date', function (timestamp, format) {
-    return (0, _timeFormat.timeFormat)(timestamp, format);
+    return (0, _timeFormat.default)(timestamp, format);
   });
   // 将多久以前的方法，注入到全局过滤器
   Vue.filter('timeFrom', function (timestamp, format) {
-    return (0, _timeFrom.timeFrom)(timestamp, format);
+    return (0, _timeFrom.default)(timestamp, format);
   });
   Vue.prototype.$u = $u;
 };var _default =
@@ -9987,9 +9960,9 @@ var install = function install(Vue) {
 
 /***/ }),
 /* 21 */
-/*!************************************************!*\
-  !*** D:/HTML/uniapp/uview/libs/mixin/mixin.js ***!
-  \************************************************/
+/*!***************************************************!*\
+  !*** D:/HTML/uniapp/uview-ui/libs/mixin/mixin.js ***!
+  \***************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10026,9 +9999,9 @@ var install = function install(Vue) {
 
 /***/ }),
 /* 22 */
-/*!**************************************************!*\
-  !*** D:/HTML/uniapp/uview/libs/mixin/mpShare.js ***!
-  \**************************************************/
+/*!*****************************************************!*\
+  !*** D:/HTML/uniapp/uview-ui/libs/mixin/mpShare.js ***!
+  \*****************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -10047,41 +10020,14 @@ module.exports = {
 
 /***/ }),
 /* 23 */
-/*!**************************************************!*\
-  !*** D:/HTML/uniapp/uview/libs/request/index.js ***!
-  \**************************************************/
+/*!*****************************************************!*\
+  !*** D:/HTML/uniapp/uview-ui/libs/request/index.js ***!
+  \*****************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@vue/babel-preset-app/node_modules/@babel/runtime/regenerator */ 24));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target, props) {for (var i = 0; i < props.length; i++) {var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);}}function _createClass(Constructor, protoProps, staticProps) {if (protoProps) _defineProperties(Constructor.prototype, protoProps);if (staticProps) _defineProperties(Constructor, staticProps);return Constructor;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var Request = /*#__PURE__*/function () {_createClass(Request, [{ key: "setConfig",
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@vue/babel-preset-app/node_modules/@babel/runtime/regenerator */ 24));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target, props) {for (var i = 0; i < props.length; i++) {var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);}}function _createClass(Constructor, protoProps, staticProps) {if (protoProps) _defineProperties(Constructor.prototype, protoProps);if (staticProps) _defineProperties(Constructor, staticProps);return Constructor;}var Request = /*#__PURE__*/function () {_createClass(Request, [{ key: "setConfig",
 
 
 
@@ -10175,22 +10121,49 @@ module.exports = {
                   }
                   uni.request(options);
                 }));case 14:case "end":return _context.stop();}}}, _callee, this);}));function request() {return _request.apply(this, arguments);}return request;}() }], [{ key: "isHttp", // 判断是否http|https开头的URL
-    value: function isHttp(url) {return /(http|https):\/\/([\w.]+\/?)\S*/.test(url);} // 拦截器
-  }]);
-  function Request() {var _this2 = this;_classCallCheck(this, Request);_defineProperty(this, "config", { baseUrl: '', // 请求的根域名
+    value: function isHttp(url) {return /(http|https):\/\/([\w.]+\/?)\S*/.test(url);} }]);
+
+  function Request() {var _this2 = this;_classCallCheck(this, Request);
+    this.config = {
+      baseUrl: '', // 请求的根域名
       // 默认的请求头
-      header: { 'content-type': 'application/json;charset=UTF-8' }, method: 'POST', // 设置为json，返回后uni.request会对数据进行一次JSON.parse
-      dataType: 'json', // 此参数无需处理，因为5+和支付宝小程序不支持，默认为text即可
-      responseType: 'text', showLoading: true, // 是否显示请求中的loading
-      loadingText: '请求中...', loadingTime: 800, // 在此时间内，请求还没回来的话，就显示加载中动画，单位ms
+      header: {
+        'content-type': 'application/json;charset=UTF-8' },
+
+      method: 'POST',
+      // 设置为json，返回后uni.request会对数据进行一次JSON.parse
+      dataType: 'json',
+      // 此参数无需处理，因为5+和支付宝小程序不支持，默认为text即可
+      responseType: 'text',
+      showLoading: true, // 是否显示请求中的loading
+      loadingText: '请求中...',
+      loadingTime: 800, // 在此时间内，请求还没回来的话，就显示加载中动画，单位ms
       timer: null, // 定时器
       originalData: false, // 是否在拦截器中返回服务端的原始数据，见文档说明
       loadingMask: true // 展示loading的时候，是否给一个透明的蒙层，防止触摸穿透
-    });_defineProperty(this, "interceptor", { // 请求前的拦截
-      request: null, // 请求后的拦截
-      response: null }); // get请求
-    this.get = function (url) {var data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};var header = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};return _this2.request({ method: 'GET', url: url, header: header, data: data });}; // post请求
-    this.post = function (url) {var data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};var header = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};return _this2.request({
+    };
+
+    // 拦截器
+    this.interceptor = {
+      // 请求前的拦截
+      request: null,
+      // 请求后的拦截
+      response: null };
+
+
+    // get请求
+    this.get = function (url) {var data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};var header = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+      return _this2.request({
+        method: 'GET',
+        url: url,
+        header: header,
+        data: data });
+
+    };
+
+    // post请求
+    this.post = function (url) {var data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};var header = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+      return _this2.request({
         url: url,
         method: 'POST',
         header: header,
@@ -11012,251 +10985,279 @@ if (hadRuntime) {
 
 /***/ }),
 /* 27 */
-/*!*********************************************************!*\
-  !*** D:/HTML/uniapp/uview/libs/function/queryParams.js ***!
-  \*********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = {
-  /**
-                    * 对象转url参数
-                    * @param {*} data,对象
-                    * @param {*} isPrefix,是否自动加上"?"
-                    */
-  queryParams: function queryParams() {var data = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};var isPrefix = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;var arrayFormat = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'brackets';
-    var prefix = isPrefix ? '?' : '';
-    var _result = [];
-    if (['indices', 'brackets', 'repeat', 'comma'].indexOf(arrayFormat) == -1) arrayFormat = 'brackets';var _loop = function _loop(
-    key) {
-      var value = data[key];
-      // 去掉为空的参数
-      if (['', undefined, null].indexOf(value) >= 0) {
-        return "continue";
-      }
-      // 如果值为数组，另行处理
-      if (value.constructor === Array) {
-        // e.g. {ids: [1, 2, 3]}
-        switch (arrayFormat) {
-          case 'indices':
-            // 结果: ids[0]=1&ids[1]=2&ids[2]=3
-            for (i = 0; i < value.length; i++) {
-              _result.push(key + '[' + i + ']=' + value[i]);
-            }
-            break;
-          case 'brackets':
-            // 结果: ids[]=1&ids[]=2&ids[]=3
-            value.forEach(function (_value) {
-              _result.push(key + '[]=' + _value);
-            });
-            break;
-          case 'repeat':
-            // 结果: ids=1&ids=2&ids=3
-            value.forEach(function (_value) {
-              _result.push(key + '=' + _value);
-            });
-            break;
-          case 'comma':
-            // 结果: ids=1,2,3
-            var commaStr = "";
-            value.forEach(function (_value) {
-              commaStr += (commaStr ? "," : "") + _value;
-            });
-            _result.push(key + '=' + commaStr);
-            break;
-          default:
-            value.forEach(function (_value) {
-              _result.push(key + '[]=' + _value);
-            });}
-
-      } else {
-        _result.push(key + '=' + value);
-      }};for (var key in data) {var _ret = _loop(key);if (_ret === "continue") continue;
-    }
-    return _result.length ? prefix + _result.join('&') : '';
-  } };
-
-/***/ }),
-/* 28 */
-/*!***************************************************!*\
-  !*** D:/HTML/uniapp/uview/libs/function/route.js ***!
-  \***************************************************/
+/*!************************************************************!*\
+  !*** D:/HTML/uniapp/uview-ui/libs/function/queryParams.js ***!
+  \************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {var _queryParams = __webpack_require__(/*! ../../libs/function/queryParams.js */ 27);
-/**
-                                                                                * 路由跳转
-                                                                                * 注意:本方法没有对跳转的回调函数进行封装
-                                                                                */
-module.exports = {
-  route: function route() {var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};var params = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
-    var config = {
-      type: 'navigateTo',
-      url: '',
-      delta: 1, // navigateBack页面后退时,回退的层数
-      params: {}, // 传递的参数
-      animationType: 'pop-in', // 窗口动画,只在APP有效
-      animationDuration: 300 // 窗口动画持续时间,单位毫秒,只在APP有效
-    };
-    config = Object.assign(config, options);
-    // 如果url没有"/"开头，添加上，因为uni的路由跳转需要"/"开头
-    if (config.url[0] != '/') config.url = '/' + config.url;
-    // 判断是否有传递显式的参数,Object.keys转为数组并判断长度,switchTab类型时不能携带参数
-    if (Object.keys(config.params).length && config.type != 'switchTab') {
-      // 判断用户传递的url中，是否带有参数
-      // 使用正则匹配，主要依据是判断是否有"/","?","="等，如“/page/index/index?name=mary"
-      // 如果有url中有get参数，转换后无需带上"?"
-      var query = '';
-      if (/.*\/.*\?.*=.*/.test(config.url)) {
-        // object对象转为get类型的参数
-        query = (0, _queryParams.queryParams)(config.params, false);
-        // 因为已有get参数,所以后面拼接的参数需要带上"&"隔开
-        config.url += "&" + query;
-      } else {
-        query = (0, _queryParams.queryParams)(config.params);
-        config.url += query;
-      }
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; /**
+                                                                                                      * 对象转url参数
+                                                                                                      * @param {*} data,对象
+                                                                                                      * @param {*} isPrefix,是否自动加上"?"
+                                                                                                      */
+function queryParams() {var data = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};var isPrefix = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;var arrayFormat = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'brackets';
+  var prefix = isPrefix ? '?' : '';
+  var _result = [];
+  if (['indices', 'brackets', 'repeat', 'comma'].indexOf(arrayFormat) == -1) arrayFormat = 'brackets';var _loop = function _loop(
+  key) {
+    var value = data[key];
+    // 去掉为空的参数
+    if (['', undefined, null].indexOf(value) >= 0) {
+      return "continue";
     }
-    // 简写形式，把url和参数拼接起来
-    if (typeof options === 'string' && typeof params == 'object') {
-      var _query = '';
-      if (/.*\/.*\?.*=.*/.test(options)) {
-        // object对象转为get类型的参数
-        _query = (0, _queryParams.queryParams)(params, false);
-        // 因为已有get参数,所以后面拼接的参数需要带上"&"隔开
-        options += "&" + _query;
-      } else {
-        _query = (0, _queryParams.queryParams)(params);
-        options += _query;
-      }
-    }
-    // 判断是否一个字符串，如果是，直接跳转(简写法)
-    // 如果是中情形，默认第二个参数为对象形式的参数
-    if (typeof options === 'string') {
-      if (options[0] != '/') options = '/' + options;
-      return uni.navigateTo({
-        url: options });
+    // 如果值为数组，另行处理
+    if (value.constructor === Array) {
+      // e.g. {ids: [1, 2, 3]}
+      switch (arrayFormat) {
+        case 'indices':
+          // 结果: ids[0]=1&ids[1]=2&ids[2]=3
+          for (i = 0; i < value.length; i++) {
+            _result.push(key + '[' + i + ']=' + value[i]);
+          }
+          break;
+        case 'brackets':
+          // 结果: ids[]=1&ids[]=2&ids[]=3
+          value.forEach(function (_value) {
+            _result.push(key + '[]=' + _value);
+          });
+          break;
+        case 'repeat':
+          // 结果: ids=1&ids=2&ids=3
+          value.forEach(function (_value) {
+            _result.push(key + '=' + _value);
+          });
+          break;
+        case 'comma':
+          // 结果: ids=1,2,3
+          var commaStr = "";
+          value.forEach(function (_value) {
+            commaStr += (commaStr ? "," : "") + _value;
+          });
+          _result.push(key + '=' + commaStr);
+          break;
+        default:
+          value.forEach(function (_value) {
+            _result.push(key + '[]=' + _value);
+          });}
 
-    }
-    // navigateTo类型的跳转
-    if (config.type == 'navigateTo' || config.type == 'to') {
-      return uni.navigateTo({
-        url: config.url,
-        animationType: config.animationType,
-        animationDuration: config.animationDuration });
+    } else {
+      _result.push(key + '=' + value);
+    }};for (var key in data) {var _ret = _loop(key);if (_ret === "continue") continue;
+  }
+  return _result.length ? prefix + _result.join('&') : '';
+}var _default =
 
-    }
-    if (config.type == 'redirectTo' || config.type == 'redirect') {
-      return uni.redirectTo({
-        url: config.url });
-
-    }
-    if (config.type == 'switchTab' || config.type == 'tab') {
-      return uni.switchTab({
-        url: config.url });
-
-    }
-    if (config.type == 'reLaunch') {
-      return uni.reLaunch({
-        url: config.url });
-
-    }
-    if (config.type == 'navigateBack' || config.type == 'back') {
-      return uni.navigateBack({
-        delta: parseInt(this.delta) });
-
-    }
-  } };
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+queryParams;exports.default = _default;
 
 /***/ }),
-/* 29 */
-/*!********************************************************!*\
-  !*** D:/HTML/uniapp/uview/libs/function/timeFormat.js ***!
-  \********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = {
-  timeFormat: function timeFormat() {var timestamp = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;var fmt = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'yyyy-mm-dd';
-    // 其他更多是格式化有如下:
-    // yyyy:mm:dd|yyyy:mm|yyyy年mm月dd日|yyyy年mm月dd日 hh时MM分等,可自定义组合
-    timestamp = parseInt(timestamp);
-    // 如果为null,则格式化当前时间
-    if (timestamp == null) timestamp = Number(new Date());
-    // 判断用户输入的时间戳是秒还是毫秒,一般前端js获取的时间戳是毫秒(13位),后端传过来的为秒(10位)
-    if (timestamp.toString().length == 10) timestamp *= 1000;
-    var date = new Date(timestamp);
-    var ret;
-    var opt = {
-      "y+": date.getFullYear().toString(), // 年
-      "m+": (date.getMonth() + 1).toString(), // 月
-      "d+": date.getDate().toString(), // 日
-      "h+": date.getHours().toString(), // 时
-      "M+": date.getMinutes().toString(), // 分
-      "s+": date.getSeconds().toString() // 秒
-      // 有其他格式化字符需求可以继续添加，必须转化成字符串
-    };
-    for (var k in opt) {
-      ret = new RegExp("(" + k + ")").exec(fmt);
-      if (ret) {
-        fmt = fmt.replace(ret[1], ret[1].length == 1 ? opt[k] : opt[k].padStart(ret[1].length, "0"));
-      };
-    };
-    return fmt;
-  } };
-
-/***/ }),
-/* 30 */
+/* 28 */
 /*!******************************************************!*\
-  !*** D:/HTML/uniapp/uview/libs/function/timeFrom.js ***!
+  !*** D:/HTML/uniapp/uview-ui/libs/function/route.js ***!
   \******************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-var _timeFormat = __webpack_require__(/*! ../../libs/function/timeFormat.js */ 29);
-module.exports = {
-  timeFrom: function timeFrom() {var timestamp = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;var format = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'yyyy-mm-dd';
-    if (timestamp == null) timestamp = Number(new Date());
-    timestamp = parseInt(timestamp);
-    // 判断用户输入的时间戳是秒还是毫秒,一般前端js获取的时间戳是毫秒(13位),后端传过来的为秒(10位)
-    if (timestamp.toString().length == 10) timestamp *= 1000;
-    var timer = new Date().getTime() - timestamp;
-    timer = parseInt(timer / 1000);
-    // 如果小于5分钟,则返回"刚刚",其他以此类推
-    var tips = '';
-    switch (true) {
-      case timer < 300:
-        tips = '刚刚';break;
-      case timer >= 300 && timer < 3600:
-        tips = parseInt(timer / 60) + '分钟前';break;
-      case timer >= 300 && timer < 86400:
-        tips = parseInt(timer / 3600) + '小时前';break;
-      case timer >= 300 && timer < 2592000:
-        tips = parseInt(timer / 86400) + '天前';break;
-      default:
-        tips = (0, _timeFormat.timeFormat)(timestamp, format);}
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _queryParams = _interopRequireDefault(__webpack_require__(/*! ../../libs/function/queryParams.js */ 27));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+/**
+                                                                                                                                                                                                                                                                                            * 路由跳转
+                                                                                                                                                                                                                                                                                            * 注意:本方法没有对跳转的回调函数进行封装
+                                                                                                                                                                                                                                                                                            */
+function route() {var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};var params = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+  var config = {
+    type: 'navigateTo',
+    url: '',
+    delta: 1, // navigateBack页面后退时,回退的层数
+    params: {}, // 传递的参数
+    animationType: 'pop-in', // 窗口动画,只在APP有效
+    animationDuration: 300 // 窗口动画持续时间,单位毫秒,只在APP有效
+  };
+  config = Object.assign(config, options);
+  // 如果url没有"/"开头，添加上，因为uni的路由跳转需要"/"开头
+  if (config.url[0] != '/') config.url = '/' + config.url;
+  // 判断是否有传递显式的参数,Object.keys转为数组并判断长度,switchTab类型时不能携带参数
+  if (Object.keys(config.params).length && config.type != 'switchTab') {
+    // 判断用户传递的url中，是否带有参数
+    // 使用正则匹配，主要依据是判断是否有"/","?","="等，如“/page/index/index?name=mary"
+    // 如果有url中有get参数，转换后无需带上"?"
+    var query = '';
+    if (/.*\/.*\?.*=.*/.test(config.url)) {
+      // object对象转为get类型的参数
+      query = (0, _queryParams.default)(config.params, false);
+      // 因为已有get参数,所以后面拼接的参数需要带上"&"隔开
+      config.url += "&" + query;
+    } else {
+      query = (0, _queryParams.default)(config.params);
+      config.url += query;
+    }
+  }
+  // 简写形式，把url和参数拼接起来
+  if (typeof options === 'string' && typeof params == 'object') {
+    var _query = '';
+    if (/.*\/.*\?.*=.*/.test(options)) {
+      // object对象转为get类型的参数
+      _query = (0, _queryParams.default)(params, false);
+      // 因为已有get参数,所以后面拼接的参数需要带上"&"隔开
+      options += "&" + _query;
+    } else {
+      _query = (0, _queryParams.default)(params);
+      options += _query;
+    }
+  }
+  // 判断是否一个字符串，如果是，直接跳转(简写法)
+  // 如果是中情形，默认第二个参数为对象形式的参数
+  if (typeof options === 'string') {
+    if (options[0] != '/') options = '/' + options;
+    return uni.navigateTo({
+      url: options });
 
-    return tips;
-  } };
+  }
+  // navigateTo类型的跳转
+  if (config.type == 'navigateTo' || config.type == 'to') {
+    return uni.navigateTo({
+      url: config.url,
+      animationType: config.animationType,
+      animationDuration: config.animationDuration });
+
+  }
+  if (config.type == 'redirectTo' || config.type == 'redirect') {
+    return uni.redirectTo({
+      url: config.url });
+
+  }
+  if (config.type == 'switchTab' || config.type == 'tab') {
+    return uni.switchTab({
+      url: config.url });
+
+  }
+  if (config.type == 'reLaunch') {
+    return uni.reLaunch({
+      url: config.url });
+
+  }
+  if (config.type == 'navigateBack' || config.type == 'back') {
+    return uni.navigateBack({
+      delta: parseInt(this.delta) });
+
+  }
+}var _default =
+
+route;exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
+/***/ }),
+/* 29 */
+/*!***********************************************************!*\
+  !*** D:/HTML/uniapp/uview-ui/libs/function/timeFormat.js ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;function timeFormat() {var timestamp = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;var fmt = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'yyyy-mm-dd';
+  // 其他更多是格式化有如下:
+  // yyyy:mm:dd|yyyy:mm|yyyy年mm月dd日|yyyy年mm月dd日 hh时MM分等,可自定义组合
+  timestamp = parseInt(timestamp);
+  // 如果为null,则格式化当前时间
+  if (timestamp == null) timestamp = Number(new Date());
+  // 判断用户输入的时间戳是秒还是毫秒,一般前端js获取的时间戳是毫秒(13位),后端传过来的为秒(10位)
+  if (timestamp.toString().length == 10) timestamp *= 1000;
+  var date = new Date(timestamp);
+  var ret;
+  var opt = {
+    "y+": date.getFullYear().toString(), // 年
+    "m+": (date.getMonth() + 1).toString(), // 月
+    "d+": date.getDate().toString(), // 日
+    "h+": date.getHours().toString(), // 时
+    "M+": date.getMinutes().toString(), // 分
+    "s+": date.getSeconds().toString() // 秒
+    // 有其他格式化字符需求可以继续添加，必须转化成字符串
+  };
+  for (var k in opt) {
+    ret = new RegExp("(" + k + ")").exec(fmt);
+    if (ret) {
+      fmt = fmt.replace(ret[1], ret[1].length == 1 ? opt[k] : opt[k].padStart(ret[1].length, "0"));
+    };
+  };
+  return fmt;
+}var _default =
+
+timeFormat;exports.default = _default;
+
+/***/ }),
+/* 30 */
+/*!*********************************************************!*\
+  !*** D:/HTML/uniapp/uview-ui/libs/function/timeFrom.js ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _timeFormat = _interopRequireDefault(__webpack_require__(/*! ../../libs/function/timeFormat.js */ 29));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+
+/**
+                                                                                                                                                                                                                                                                                          * 时间戳转为多久之前
+                                                                                                                                                                                                                                                                                          * @param String timestamp 时间戳
+                                                                                                                                                                                                                                                                                          * @param String | Boolean format 如果为时间格式字符串，超出一定时间范围，返回固定的时间格式；
+                                                                                                                                                                                                                                                                                          * 如果为布尔值false，无论什么时间，都返回多久以前的格式
+                                                                                                                                                                                                                                                                                          */
+function timeFrom() {var timestamp = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;var format = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'yyyy-mm-dd';
+  if (timestamp == null) timestamp = Number(new Date());
+  timestamp = parseInt(timestamp);
+  // 判断用户输入的时间戳是秒还是毫秒,一般前端js获取的时间戳是毫秒(13位),后端传过来的为秒(10位)
+  if (timestamp.toString().length == 10) timestamp *= 1000;
+  var timer = new Date().getTime() - timestamp;
+  timer = parseInt(timer / 1000);
+  // 如果小于5分钟,则返回"刚刚",其他以此类推
+  var tips = '';
+  console.log(timer);
+  switch (true) {
+    case timer < 300:
+      tips = '刚刚';
+      break;
+    case timer >= 300 && timer < 3600:
+      tips = parseInt(timer / 60) + '分钟前';
+      break;
+    case timer >= 3600 && timer < 86400:
+      tips = parseInt(timer / 3600) + '小时前';
+      break;
+    case timer >= 86400 && timer < 2592000:
+      tips = parseInt(timer / 86400) + '天前';
+      break;
+    default:
+      // 如果format为false，则无论什么时间戳，都显示xx之前
+      if (format === false) {
+        if (timer >= 2592000 && timer < 365 * 86400) {
+          tips = parseInt(timer / (86400 * 30)) + '个月前';
+        } else {
+          tips = parseInt(timer / (86400 * 365)) + '年前';
+        }
+      } else {
+        tips = (0, _timeFormat.default)(timestamp, format);
+      }}
+
+  return tips;
+}var _default =
+
+timeFrom;exports.default = _default;
 
 /***/ }),
 /* 31 */
-/*!***********************************************************!*\
-  !*** D:/HTML/uniapp/uview/libs/function/colorGradient.js ***!
-  \***********************************************************/
+/*!**************************************************************!*\
+  !*** D:/HTML/uniapp/uview-ui/libs/function/colorGradient.js ***!
+  \**************************************************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-/**
- * 求两个颜色之间的渐变值
- * @param {string} startColor 开始的颜色
- * @param {string} endColor 结束的颜色
- * @param {number} step 颜色等分的份额
- * */
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; /**
+                                                                                                      * 求两个颜色之间的渐变值
+                                                                                                      * @param {string} startColor 开始的颜色
+                                                                                                      * @param {string} endColor 结束的颜色
+                                                                                                      * @param {number} step 颜色等分的份额
+                                                                                                      * */
 function colorGradient() {var startColor = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'rgb(0, 0, 0)';var endColor = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'rgb(255, 255, 255)';var step = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 10;
   var startRGB = hexToRgb(startColor, false); //转换为rgb数组模式
   var startR = startRGB[0];
@@ -11344,71 +11345,74 @@ function rgbToHex(rgb) {
   } else {
     return _this;
   }
-}
+}var _default =
 
-module.exports = {
+{
   colorGradient: colorGradient,
   hexToRgb: hexToRgb,
-  rgbToHex: rgbToHex };
+  rgbToHex: rgbToHex };exports.default = _default;
 
 /***/ }),
 /* 32 */
-/*!**************************************************!*\
-  !*** D:/HTML/uniapp/uview/libs/function/guid.js ***!
-  \**************************************************/
+/*!*****************************************************!*\
+  !*** D:/HTML/uniapp/uview-ui/libs/function/guid.js ***!
+  \*****************************************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-module.exports = {
-  /**
-                    * 本算法来源于简书开源代码，详见：https://www.jianshu.com/p/fdbf293d0a85
-                    * 全局唯一标识符（uuid，Globally Unique Identifier）,也称作 uuid(Universally Unique IDentifier) 
-                    * 一般用于多个组件之间,给它一个唯一的标识符,或者v-for循环的时候,如果使用数组的index可能会导致更新列表出现问题
-                    * 最可能的情况是左滑删除item或者对某条信息流"不喜欢"并去掉它的时候,会导致组件内的数据可能出现错乱
-                    * v-for的时候,推荐使用后端返回的id而不是循环的index
-                    * @param {Number} len uuid的长度
-                    * @param {Boolean} firstU 将返回的首字母置为"u"
-                    * @param {Nubmer} radix 生成uuid的基数(意味着返回的字符串都是这个基数),2-二进制,8-八进制,10-十进制,16-十六进制
-                    */
-  guid: function guid() {var len = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 32;var firstU = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;var radix = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
-    var chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'.split('');
-    var uuid = [];
-    radix = radix || chars.length;
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; /**
+                                                                                                      * 本算法来源于简书开源代码，详见：https://www.jianshu.com/p/fdbf293d0a85
+                                                                                                      * 全局唯一标识符（uuid，Globally Unique Identifier）,也称作 uuid(Universally Unique IDentifier) 
+                                                                                                      * 一般用于多个组件之间,给它一个唯一的标识符,或者v-for循环的时候,如果使用数组的index可能会导致更新列表出现问题
+                                                                                                      * 最可能的情况是左滑删除item或者对某条信息流"不喜欢"并去掉它的时候,会导致组件内的数据可能出现错乱
+                                                                                                      * v-for的时候,推荐使用后端返回的id而不是循环的index
+                                                                                                      * @param {Number} len uuid的长度
+                                                                                                      * @param {Boolean} firstU 将返回的首字母置为"u"
+                                                                                                      * @param {Nubmer} radix 生成uuid的基数(意味着返回的字符串都是这个基数),2-二进制,8-八进制,10-十进制,16-十六进制
+                                                                                                      */
+function guid() {var len = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 32;var firstU = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;var radix = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+  var chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'.split('');
+  var uuid = [];
+  radix = radix || chars.length;
 
-    if (len) {
-      // 如果指定uuid长度,只是取随机的字符,0|x为位运算,能去掉x的小数位,返回整数位
-      for (var i = 0; i < len; i++) {uuid[i] = chars[0 | Math.random() * radix];}
-    } else {
-      var r;
-      // rfc4122标准要求返回的uuid中,某些位为固定的字符
-      uuid[8] = uuid[13] = uuid[18] = uuid[23] = '-';
-      uuid[14] = '4';
+  if (len) {
+    // 如果指定uuid长度,只是取随机的字符,0|x为位运算,能去掉x的小数位,返回整数位
+    for (var i = 0; i < len; i++) {uuid[i] = chars[0 | Math.random() * radix];}
+  } else {
+    var r;
+    // rfc4122标准要求返回的uuid中,某些位为固定的字符
+    uuid[8] = uuid[13] = uuid[18] = uuid[23] = '-';
+    uuid[14] = '4';
 
-      for (var _i = 0; _i < 36; _i++) {
-        if (!uuid[_i]) {
-          r = 0 | Math.random() * 16;
-          uuid[_i] = chars[_i == 19 ? r & 0x3 | 0x8 : r];
-        }
+    for (var _i = 0; _i < 36; _i++) {
+      if (!uuid[_i]) {
+        r = 0 | Math.random() * 16;
+        uuid[_i] = chars[_i == 19 ? r & 0x3 | 0x8 : r];
       }
     }
-    // 移除第一个字符,并用u替代,因为第一个字符为数值时,该guuid不能用作id或者class
-    if (firstU) {
-      uuid.shift();
-      return 'u' + uuid.join('');
-    } else {
-      return uuid.join('');
-    }
-  } };
+  }
+  // 移除第一个字符,并用u替代,因为第一个字符为数值时,该guuid不能用作id或者class
+  if (firstU) {
+    uuid.shift();
+    return 'u' + uuid.join('');
+  } else {
+    return uuid.join('');
+  }
+}var _default =
+
+guid;exports.default = _default;
 
 /***/ }),
 /* 33 */
-/*!***************************************************!*\
-  !*** D:/HTML/uniapp/uview/libs/function/color.js ***!
-  \***************************************************/
+/*!******************************************************!*\
+  !*** D:/HTML/uniapp/uview-ui/libs/function/color.js ***!
+  \******************************************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-var color = {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var color = {
   primary: "#2979ff",
   primaryDark: "#2b85e4",
   primaryDisabled: "#a0cfff",
@@ -11439,74 +11443,78 @@ var color = {
   contentColor: "#606266",
   tipsColor: "#909399",
   lightColor: "#c0c4cc",
-  borderColor: "#e4e7ed" };
+  borderColor: "#e4e7ed" };var _default =
 
 
-module.exports = { color: color };
+color;exports.default = _default;
 
 /***/ }),
 /* 34 */
-/*!*******************************************************!*\
-  !*** D:/HTML/uniapp/uview/libs/function/type2icon.js ***!
-  \*******************************************************/
+/*!**********************************************************!*\
+  !*** D:/HTML/uniapp/uview-ui/libs/function/type2icon.js ***!
+  \**********************************************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-module.exports = {
-  /**
-                    * 根据主题type值,获取对应的图标
-                    * @param String type 主题名称,primary|info|error|warning|success
-                    * @param String fill 是否使用fill填充实体的图标  
-                    */
-  type2icon: function type2icon() {var type = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'success';var fill = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
-    // 如果非预置值,默认为success
-    if (['primary', 'info', 'error', 'warning', 'success'].indexOf(type) == -1) type = 'success';
-    var iconName = '';
-    // 目前(2019-12-12),info和primary使用同一个图标
-    switch (type) {
-      case 'primary':
-        iconName = 'info-circle';
-        break;
-      case 'info':
-        iconName = 'info-circle';
-        break;
-      case 'error':
-        iconName = 'close-circle';
-        break;
-      case 'warning':
-        iconName = 'error-circle';
-        break;
-      case 'success':
-        iconName = 'checkmark-circle';
-        break;
-      default:
-        iconName = 'checkmark-circle';}
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; /**
+                                                                                                      * 根据主题type值,获取对应的图标
+                                                                                                      * @param String type 主题名称,primary|info|error|warning|success
+                                                                                                      * @param String fill 是否使用fill填充实体的图标  
+                                                                                                      */
+function type2icon() {var type = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'success';var fill = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+  // 如果非预置值,默认为success
+  if (['primary', 'info', 'error', 'warning', 'success'].indexOf(type) == -1) type = 'success';
+  var iconName = '';
+  // 目前(2019-12-12),info和primary使用同一个图标
+  switch (type) {
+    case 'primary':
+      iconName = 'info-circle';
+      break;
+    case 'info':
+      iconName = 'info-circle';
+      break;
+    case 'error':
+      iconName = 'close-circle';
+      break;
+    case 'warning':
+      iconName = 'error-circle';
+      break;
+    case 'success':
+      iconName = 'checkmark-circle';
+      break;
+    default:
+      iconName = 'checkmark-circle';}
 
-    // 是否是实体类型,加上-fill,在icon组件库中,实体的类名是后面加-fill的
-    if (fill) iconName += '-fill';
-    return iconName;
-  } };
+  // 是否是实体类型,加上-fill,在icon组件库中,实体的类名是后面加-fill的
+  if (fill) iconName += '-fill';
+  return iconName;
+}var _default =
+
+type2icon;exports.default = _default;
 
 /***/ }),
 /* 35 */
-/*!*********************************************************!*\
-  !*** D:/HTML/uniapp/uview/libs/function/randomArray.js ***!
-  \*********************************************************/
+/*!************************************************************!*\
+  !*** D:/HTML/uniapp/uview-ui/libs/function/randomArray.js ***!
+  \************************************************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-module.exports = {
-  // 打乱数组
-  randomArray: function randomArray() {var array = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-    // 原理是sort排序,Math.random()产生0<= x < 1之间的数,会导致x-0.05大于或者小于0
-    return array.sort(function () {return Math.random() - 0.5;});
-  } };
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; // 打乱数组
+function randomArray() {var array = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+  // 原理是sort排序,Math.random()产生0<= x < 1之间的数,会导致x-0.05大于或者小于0
+  return array.sort(function () {return Math.random() - 0.5;});
+}var _default =
+
+randomArray;exports.default = _default;
 
 /***/ }),
 /* 36 */
-/*!**************************************************!*\
-  !*** D:/HTML/uniapp/uview/libs/function/test.js ***!
-  \**************************************************/
+/*!*****************************************************!*\
+  !*** D:/HTML/uniapp/uview-ui/libs/function/test.js ***!
+  \*****************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -11687,74 +11695,80 @@ function empty(value) {
 
 /***/ }),
 /* 37 */
-/*!****************************************************!*\
-  !*** D:/HTML/uniapp/uview/libs/function/random.js ***!
-  \****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = {
-  random: function random(min, max) {
-    if (min >= 0 && max > 0 && max >= min) {
-      var gab = max - min + 1;
-      return Math.floor(Math.random() * gab + min);
-    } else {
-      return 0;
-    }
-  } };
-
-/***/ }),
-/* 38 */
-/*!**************************************************!*\
-  !*** D:/HTML/uniapp/uview/libs/function/trim.js ***!
-  \**************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = {
-  trim: function trim(str) {var pos = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'both';
-    if (pos == 'both') {
-      return str.replace(/^\s+|\s+$/g, "");
-    } else if (pos == "left") {
-      return str.replace(/^\s*/, '');
-    } else if (pos == 'right') {
-      return str.replace(/(\s*$)/g, "");
-    } else if (pos == 'all') {
-      return str.replace(/\s+/g, "");
-    } else {
-      return str;
-    }
-  } };
-
-/***/ }),
-/* 39 */
-/*!***************************************************!*\
-  !*** D:/HTML/uniapp/uview/libs/function/toast.js ***!
-  \***************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function(uni) {module.exports = {
-  toast: function toast(title) {var duration = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1500;
-    uni.showToast({
-      title: title,
-      icon: 'none',
-      duration: duration });
-
-  } };
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
-
-/***/ }),
-/* 40 */
-/*!**************************************************!*\
-  !*** D:/HTML/uniapp/uview/libs/config/config.js ***!
-  \**************************************************/
+/*!*******************************************************!*\
+  !*** D:/HTML/uniapp/uview-ui/libs/function/random.js ***!
+  \*******************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; // 此版本发布于2020-04-29
-var version = '1.1.4';var _default =
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;function random(min, max) {
+  if (min >= 0 && max > 0 && max >= min) {
+    var gab = max - min + 1;
+    return Math.floor(Math.random() * gab + min);
+  } else {
+    return 0;
+  }
+}var _default =
+
+random;exports.default = _default;
+
+/***/ }),
+/* 38 */
+/*!*****************************************************!*\
+  !*** D:/HTML/uniapp/uview-ui/libs/function/trim.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;function trim(str) {var pos = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'both';
+  if (pos == 'both') {
+    return str.replace(/^\s+|\s+$/g, "");
+  } else if (pos == "left") {
+    return str.replace(/^\s*/, '');
+  } else if (pos == 'right') {
+    return str.replace(/(\s*$)/g, "");
+  } else if (pos == 'all') {
+    return str.replace(/\s+/g, "");
+  } else {
+    return str;
+  }
+}var _default =
+
+trim;exports.default = _default;
+
+/***/ }),
+/* 39 */
+/*!******************************************************!*\
+  !*** D:/HTML/uniapp/uview-ui/libs/function/toast.js ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;function toast(title) {var duration = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1500;
+  uni.showToast({
+    title: title,
+    icon: 'none',
+    duration: duration });
+
+}var _default =
+
+toast;exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
+/***/ }),
+/* 40 */
+/*!*****************************************************!*\
+  !*** D:/HTML/uniapp/uview-ui/libs/config/config.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; // 此版本发布于2020-05-05
+var version = '1.1.7';var _default =
 
 {
   v: version,
@@ -11762,9 +11776,9 @@ var version = '1.1.4';var _default =
 
 /***/ }),
 /* 41 */
-/*!**************************************************!*\
-  !*** D:/HTML/uniapp/uview/libs/config/zIndex.js ***!
-  \**************************************************/
+/*!*****************************************************!*\
+  !*** D:/HTML/uniapp/uview-ui/libs/config/zIndex.js ***!
+  \*****************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -11842,10 +11856,27 @@ var Login = function Login(data) {
 "use strict";
 /* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _index = _interopRequireDefault(__webpack_require__(/*! ../config/index.js */ 50));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 
+var requestList = {};
+
+function addRequesKey(key) {//添加
+  requestList[key] = true;
+}
+
+function removeRequestKey(key) {//删除
+  delete requestList[key];
+}
+
+function hitRequestKey(key) {//查询
+  return requestList[key];
+}
+
 var Request = function Request(_ref) {var url = _ref.url,data = _ref.data,_ref$showLoading = _ref.showLoading,showLoading = _ref$showLoading === void 0 ? true : _ref$showLoading,_ref$method = _ref.method,method = _ref$method === void 0 ? "POST" : _ref$method;
-  showLoading && uni.showLoading({ title: '加载中...', mask: true });
-  uni.showNavigationBarLoading();
+  showLoading && wx.showLoading({ title: '加载中...', mask: true });
+  wx.showNavigationBarLoading();
   return new Promise(function (resolve, reject) {
+    if (hitRequestKey(url)) return;
+    addRequesKey(url);
+
     uni.request({
       url: _index.default.baseUrl + url,
       data: Object.assign({}, data),
@@ -11862,16 +11893,17 @@ var Request = function Request(_ref) {var url = _ref.url,data = _ref.data,_ref$s
       },
       fail: function fail(err) {
         console.log(err);
-        uni.hideLoading();
-        uni.showToast({
+        wx.hideLoading();
+        wx.showToast({
           title: err.msg || '请重试',
           icon: 'none' });
 
         reject();
       },
       complete: function complete(res) {
-        uni.hideLoading();
-        uni.hideNavigationBarLoading();
+        removeRequestKey(url);
+        wx.hideLoading();
+        wx.hideNavigationBarLoading();
       } });
 
   });

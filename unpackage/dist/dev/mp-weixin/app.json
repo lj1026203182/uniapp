@@ -33,6 +33,5 @@
   },
   "usingComponents": {
     "i-tab-bar": "/components/iTabBar/iTabBar"
-  },
-  "sitemapLocation": "sitemap77.json"
+  }
 }

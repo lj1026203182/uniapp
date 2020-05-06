@@ -1,9 +1,26 @@
 import config from '../config/index.js'
 
+const requestList = {};
+
+function addRequesKey(key) { //添加
+	requestList[key] = true;
+}
+
+function removeRequestKey(key) { //删除
+	delete requestList[key]
+}
+
+function hitRequestKey(key) { //查询
+	return requestList[key]
+}
+
 const Request = ({ url, data, showLoading = true, method = "POST" }) => {
-	showLoading && uni.showLoading({ title: '加载中...', mask: true })
-	uni.showNavigationBarLoading()
+	showLoading && wx.showLoading({ title: '加载中...', mask: true })
+	wx.showNavigationBarLoading()
 	return new Promise((resolve, reject) => {
+		if (hitRequestKey(url)) return;
+		addRequesKey(url);
+
 		uni.request({
 			url: config.baseUrl + url,
 			data: Object.assign({}, data),
@@ -20,16 +37,17 @@ const Request = ({ url, data, showLoading = true, method = "POST" }) => {
 			},
 			fail: err => {
 				console.log(err)
-				uni.hideLoading()
-				uni.showToast({
+				wx.hideLoading()
+				wx.showToast({
 					title: err.msg || '请重试',
 					icon: 'none'
 				})
 				reject()
 			},
 			complete: res => {
-				uni.hideLoading()
-				uni.hideNavigationBarLoading()
+				removeRequestKey(url)
+				wx.hideLoading()
+				wx.hideNavigationBarLoading()
 			}
 		})
 	})
